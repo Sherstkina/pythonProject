@@ -1,13 +1,24 @@
-price = 0
-tickets = int(input("Введите количество билетов:"))
-age = int(input("Введите возраст:"))
-for tickets in range(tickets):
-    if age < 18:
-        price += 0
-    elif 18 <= age <= 25:
-        price += 990
-    elif age > 25:
-        price += 1390
-if tickets > 3:
-    price -= price/100*10
-print("К оплате:",price)
+def binary_search(array, element, left, right):
+    if left > right:
+        return False
+    middle = (right + left) // 2
+    if array[middle - 1] < element and element <+ array[middle]:
+        return [middle - 1]
+    elif element < array[middle]:
+        return binary_search( array, element, left, middle - 1)
+    elif element == array [middle - 1]:
+        return  binary_search(array, element, left, middle - 1)
+    else:
+        return binary_search(array, element, left, middle + 1)
+array = list(map(int, input("Введите числа в любом порядке через пробел:").split()))
+element = int(input("Введите любое положительное число из списка: "))
+for i in range(len(array)):
+    for j in range(len(array) - i - 1):
+        if array[j]> array[j+1]:
+            array[j], array[j+1]= array[j+1],array[j]
+print(array)
+left = int(array[0])
+right = int(array[-1])
+if element < left or element > right:
+    print("Число вне диапазона")
+    print(binary_search(array, element, 0, len(array) - 1))
